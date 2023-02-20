@@ -1,4 +1,4 @@
-git add *
+git add -all (include delete)
 
 git commit -m "bulabula"
 

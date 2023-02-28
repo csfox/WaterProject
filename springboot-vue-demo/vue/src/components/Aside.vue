@@ -2,17 +2,20 @@
   <div>
     <el-menu
         style = "width: 200px;min-height: calc(100vh - 50px);"
-        default-active="2"
+        default-active="user"
+        default-openeds=1
         class="el-menu-vertical-demo"
+
+
 
     >
       <el-sub-menu index="1">
-          <template #title>item four</template>
-          <el-menu-item index="1-1">item one</el-menu-item>
+          <template #title>水利系统管理</template>
+          <el-menu-item index="user">水位管理</el-menu-item>
       </el-sub-menu>
       <el-menu-item index="2">
         <el-icon><icon-menu /></el-icon>
-        <span>Navigator Two</span>
+        <span>水质管理</span>
       </el-menu-item>
       <el-menu-item index="4">
         <el-icon><setting /></el-icon>

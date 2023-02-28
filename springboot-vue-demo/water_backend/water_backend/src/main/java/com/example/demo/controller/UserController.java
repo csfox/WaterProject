@@ -18,7 +18,7 @@ public class UserController {
     @Resource
     UserMapper userMapper;
 
-    @PostMapping
+    @PostMapping //新增
     public Result<?> save(@RequestBody User user){//将前台JSON数据转换为user对象
         if(user.getPassword()==null){
             user.setPassword("123456");
@@ -27,8 +27,19 @@ public class UserController {
         return Result.success();
     }
 
-    @GetMapping
-    public Result<?> FindPage(@RequestParam(defaultValue = "1") Integer pageNum,@RequestParam(defaultValue = "10") Integer pageSize,@RequestParam(defaultValue = "") String search){//将前台JSON数据转换为user对象
+    @PutMapping //更新
+    public Result<?> update(@RequestBody User user){//将前台JSON数据转换为user对象
+        userMapper.updateById(user);
+        return Result.success();
+    }
+    @DeleteMapping("/{id}") //更新
+    public Result<?> update(@PathVariable Long id){//将前台JSON数据转换为user对象
+        userMapper.deleteById(id);
+        return Result.success();
+    }
+
+    @GetMapping //查询
+    public Result<?> FindPage(@RequestParam(defaultValue = "1") Integer pageNum,@RequestParam(defaultValue = "20") Integer pageSize,@RequestParam(defaultValue = "") String search){//将前台JSON数据转换为user对象
         LambdaQueryWrapper<User> wrapper= Wrappers.<User>lambdaQuery();
 
         if(StrUtil.isNotBlank(search)){

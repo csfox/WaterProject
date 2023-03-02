@@ -57,18 +57,18 @@
           title="Tips"
           width="30%">
         <el-form :model="form" label-width="120px">
-          <el-form-item label="用户名">
+          <el-form-item label="事件">
             <el-input v-model="form.username" style = "width:80%"/>
           </el-form-item>
-          <el-form-item label="昵称">
+          <el-form-item label="标志">
             <el-input v-model="form.nickName" style = "width:80%"/>
           </el-form-item>
-          <el-form-item label="年龄">
+          <el-form-item label="水位">
             <el-input v-model="form.age" style = "width:80%"/>
           </el-form-item>
-          <el-form-item label="性别">
-            <el-radio v-model="form.sex" label="男" >男</el-radio>
-            <el-radio v-model="form.sex" label="女" >女</el-radio>
+          <el-form-item label="类别">
+            <el-radio v-model="form.sex" label="男" >预警</el-radio>
+            <el-radio v-model="form.sex" label="女" >正常</el-radio>
             <el-radio v-model="form.sex" label="未知" >未知</el-radio>
           </el-form-item>
           <el-form-item label="地址">

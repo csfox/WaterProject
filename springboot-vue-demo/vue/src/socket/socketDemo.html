@@ -32,8 +32,8 @@
 <script>
     $(function(){
         var webSocket;
-        var url = 'ws://localhost:9090/websocket/chat/';
-        //进入聊天室
+        var url = '/apw/user';
+
         $('#joinRoomBtn').click(function(){
             var username = $('#username').val();
             webSocket = new WebSocket(url+username);

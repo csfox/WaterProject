@@ -20,6 +20,9 @@ export default {
     }
   },
   methods: {
+    load(){
+
+    },
     test() {
       // 官方示例 var myChart = echarts.init(document.getElementById('main'));
       const myChart = echarts.init(this.$refs.main); // 我们可以这样写
@@ -97,11 +100,64 @@ export default {
         ]
       }
       setInterval(function () {
+        let jsonR=0;
+        let webSocket;
+
+        webSocket = new WebSocket("ws://localhost:9090/user/chengrui");
+        webSocket.onopen = function (){
+          console.log('webSocket连接创建。。。');
+        }
+        webSocket.onmessage = function(event){
+          jsonR = JSON.parse(event.data).age;
+          if(jsonR!=0){
+            this.dataAge = jsonR;
+          }
+          console.log(this.dataAge);
+          let nowTime = new Date().toLocaleTimeString().replace(/^\D*/, '');
+          time.shift();
+          time.push(nowTime);
+          // dataOne.shift()
+          // dataOne.push(this.dataId * 1000)
+          dataTwo.shift();
+          dataTwo.push(this.dataAge * 1000);
+          myChart.setOption({
+            xAxis: [
+              {
+                data: time
+              }
+            ],
+            series: [
+              {
+                data: dataOne
+              },
+              {
+                data: dataTwo
+              }
+            ]
+          })
+
+
+        }
+
+
+        webSocket.onclose = function(){
+          console.log("连接关闭");
+        }
+        webSocket.onerror = function (event) {
+          console.log('webSocket连接异常。。。');
+        }
+
+
+
+        //原始
         let nowTime = new Date().toLocaleTimeString().replace(/^\D*/, '');
         request.get("/api/user").then(res =>{
           //this.dataId = res.data.records[temp].id
-          this.dataAge = res.data.records[temp].age
+          this.dataAge = res.data.age
+          console.log(this.dataAge);
+
         })
+
         time.shift()
         time.push(nowTime)
         // dataOne.shift()
@@ -133,6 +189,7 @@ export default {
         })
       }, 2000)
       myChart.setOption(options)
+
     }
   }
 }

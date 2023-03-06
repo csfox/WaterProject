@@ -151,9 +151,9 @@ export default {
 
         //原始
         let nowTime = new Date().toLocaleTimeString().replace(/^\D*/, '');
-        request.get("/api/user").then(res =>{
+        request.get("/api/wr_level").then(res =>{
           //this.dataId = res.data.records[temp].id
-          this.dataAge = res.data.age
+          this.dataAge = res.data.waterLevel;
           console.log(this.dataAge);
 
         })

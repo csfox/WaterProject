@@ -1,6 +1,4 @@
 package com.example.demo.controller;
-
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.demo.common.Result;
 import com.example.demo.entity.Wr_level;

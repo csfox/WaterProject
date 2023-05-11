@@ -8,14 +8,14 @@ import * as echarts from "echarts";
 import request from "../utils/request";
 // import axios from "axios";
 export default {
-  name: 'homePage',
+  name: 'homePage1',
   mounted() {
     this.test()
   },
   data() {
     return {
       dataId:0,
-      dataAge:0,
+      dataAge1:0,
       count:2,
     }
   },
@@ -106,10 +106,9 @@ export default {
 
         //原始
         let nowTime = new Date().toLocaleTimeString().replace(/^\D*/, '');
-        request.get("/api/wr_level").then(res =>{
-          //this.dataId = res.data.records[temp].id
-          this.dataAge = res.data.waterLevel;
-          console.log(this.dataAge);
+        request.get("/api/wr_rainfall").then(res =>{
+          this.dataAge1 = res.data.aoOut;
+          console.log(this.dataAge1);
 
         })
 
@@ -118,7 +117,7 @@ export default {
         // dataOne.shift()
         // dataOne.push(this.dataId * 1000)
         dataTwo.shift()
-        dataTwo.push(this.dataAge * 1000)
+        dataTwo.push(this.dataAge1 * 1000)
         temp++
 
 
